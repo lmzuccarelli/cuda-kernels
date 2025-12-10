@@ -13,17 +13,14 @@ int main() {
     size_t size = N * sizeof(float);
     float *h_A, *h_B, *h_C, *d_A, *d_B, *d_C;
 
-    // Allocate host memory
     h_A = (float*)malloc(size);
     h_B = (float*)malloc(size);
     h_C = (float*)malloc(size);
 
-    // Allocate device memory
     cudaMalloc(&d_A, size);
     cudaMalloc(&d_B, size);
     cudaMalloc(&d_C, size);
 
-    // Copy data to device
     cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice);
     cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice);
 
@@ -42,18 +39,10 @@ int main() {
 
     printf("Kernel Execution Time: %f ms\n", milliseconds);
 
-    // Launch kernel
-    // vectorAddKernel<<<(N + 255) / 256, 256>>>(d_A, d_B, d_C, N);
-
-    // Synchronize to ensure kernel execution is complete
-    // cudaDeviceSynchronize();
-
-    // Now safely copy data back to host
     cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
 
     printf("Result: %f\n", h_C[0]); // Correct result
 
-    // Cleanup
     free(h_A);
     free(h_B);
     free(h_C);

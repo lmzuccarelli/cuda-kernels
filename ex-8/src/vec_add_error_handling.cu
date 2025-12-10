@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// CUDA Kernel for vector addition
 __global__ void vectorAdd(const float *A, const float *B, float *C, int N) {
     int idx = threadIdx.x + blockIdx.x * blockDim.x;
     if (idx < N) {
@@ -15,7 +14,6 @@ int main() {
     size_t size = N * sizeof(float);
     cudaError_t err;
 
-    // Allocate host memory
     float *h_A = (float*)malloc(size);
     float *h_B = (float*)malloc(size);
     float *h_C = (float*)malloc(size);
@@ -25,13 +23,11 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    // Initialize host arrays
     for (int i = 0; i < N; i++) {
         h_A[i] = i * 1.0f;
         h_B[i] = i * 2.0f;
     }
 
-    // Allocate device memory
     float *d_A = NULL;
     float *d_B = NULL;
     float *d_C = NULL;
@@ -56,7 +52,6 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    // Copy data from host to device
     err = cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice);
     if (err != cudaSuccess) {
         fprintf(stderr, "Failed to copy vector A from host to device (error code %s)!\n", cudaGetErrorString(err));
@@ -68,33 +63,28 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    // Launch the vector addition kernel
     int threadsPerBlock = 256;
     int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
     vectorAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, N);
 
-    // Check for kernel launch errors
     err = cudaGetLastError();
     if (err != cudaSuccess) {
         fprintf(stderr, "Failed to launch vectorAdd kernel (error code %s)!\n", cudaGetErrorString(err));
         exit(EXIT_FAILURE);
     }
 
-    // Synchronize to ensure kernel completion
     err = cudaDeviceSynchronize();
     if (err != cudaSuccess) {
         fprintf(stderr, "cudaDeviceSynchronize returned error code %s after launching kernel!\n", cudaGetErrorString(err));
         exit(EXIT_FAILURE);
     }
 
-    // Copy the result back to the host
     err = cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
     if (err != cudaSuccess) {
         fprintf(stderr, "Failed to copy vector C from device to host (error code %s)!\n", cudaGetErrorString(err));
         exit(EXIT_FAILURE);
     }
 
-    // Verify the result
     for (int i = 0; i < N; i++) {
         if (fabs(h_C[i] - (h_A[i] + h_B[i])) > 1e-5) {
             fprintf(stderr, "Result verification failed at element %d!\n", i);
@@ -103,12 +93,10 @@ int main() {
     }
     printf("Test PASSED\n");
 
-    // Free device memory
     cudaFree(d_A);
     cudaFree(d_B);
     cudaFree(d_C);
 
-    // Free host memory
     free(h_A);
     free(h_B);
     free(h_C);

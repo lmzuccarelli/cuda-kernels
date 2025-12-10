@@ -14,7 +14,6 @@ int main() {
     float *B = (float*)malloc(N * sizeof(float));
     float *C = (float*)malloc(N * sizeof(float));
 
-    // Initialize vectors
     for(int i = 0; i < N; i++) {
         A[i] = 1.0f;
         B[i] = 2.0f;
