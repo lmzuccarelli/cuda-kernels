@@ -7,7 +7,7 @@ all: cpu gpu
 
 cpu: src/main_cpu.c
 	mkdir -p build
-	$(CC) $(CFLAGS) src/main_cpu.c -o cpu
+	$(CC) $(CFLAGS) src/main_cpu.c -o build/cpu
 
 gpu: src/main_gpu.cu
 	mkdir -p build
