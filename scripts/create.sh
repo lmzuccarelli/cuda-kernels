@@ -12,9 +12,9 @@ NVCC=nvcc
 CFLAGS=-O2
 NVCCFLAGS=-O2 -arch=sm_86
 
-all: $2 
+all: clean build 
 
-$2:
+build:
 	mkdir -p build 
 	\$(NVCC) \$(NVCCFLAGS) src/$2.cu -o build/$2
 

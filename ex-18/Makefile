@@ -3,9 +3,9 @@ NVCC=nvcc
 CFLAGS=-O2
 NVCCFLAGS=-O2 -arch=sm_86
 
-all: error_handling 
+all: clean build
 
-error_handling:
+build:
 	mkdir -p build 
 	$(NVCC) $(NVCCFLAGS) src/error_handling.cu -o build/error_handling
 

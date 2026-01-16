@@ -3,14 +3,11 @@ NVCC=nvcc
 CFLAGS=-O2
 NVCCFLAGS=-O2 -arch=sm_86
 
-all: vec-add vec-mult
+all: build
 
-vec-add:
+build:
 	mkdir -p build
 	$(NVCC) $(NVCCFLAGS) src/vec_add.cu -o build/vec_add
-
-vec-mult: 
-	mkdir -p build
 	$(NVCC) $(NVCCFLAGS) src/vec_mult.cu -o build/vec_mult
 
 clean:

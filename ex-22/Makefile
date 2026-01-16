@@ -3,9 +3,9 @@ NVCC=nvcc
 CFLAGS=-O2
 NVCCFLAGS=-O2 -arch=sm_86
 
-all: events 
+all: clean build
 
-events:
+build:
 	mkdir -p build 
 	$(NVCC) $(NVCCFLAGS) src/events.cu -o build/events
 

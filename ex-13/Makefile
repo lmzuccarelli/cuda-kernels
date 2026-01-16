@@ -3,9 +3,9 @@ NVCC=nvcc
 CFLAGS=-O2
 NVCCFLAGS=-O2 -arch=sm_86
 
-all: atomic_add 
+all: clean build
 
-atomic_add: 
+build:
 	mkdir -p build
 	$(NVCC) $(NVCCFLAGS) src/atomic_add.cu -o build/atomic_add
 

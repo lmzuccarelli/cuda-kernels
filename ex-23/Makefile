@@ -6,8 +6,8 @@ NVCCFLAGS=-O2 -arch=sm_86
 all: clean build
 
 build:
-	mkdir -p build
-	$(NVCC) $(NVCCFLAGS) src/shm_bank_kernel.cu -o build/shm_bank_kernel
+	mkdir -p build 
+	$(NVCC) $(NVCCFLAGS) src/async-memory.cu -o build/async-memory
 
 clean:
 	rm -f build/*

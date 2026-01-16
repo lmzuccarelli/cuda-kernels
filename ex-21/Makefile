@@ -3,9 +3,9 @@ NVCC=nvcc
 CFLAGS=-O2
 NVCCFLAGS=-O2 -arch=sm_86
 
-all: streams 
+all: clean build
 
-streams:
+build:
 	mkdir -p build 
 	$(NVCC) $(NVCCFLAGS) src/streams.cu -o build/streams
 

@@ -3,9 +3,9 @@ NVCC=nvcc
 CFLAGS=-O2
 NVCCFLAGS=-O2 -arch=sm_86
 
-all: syncthreads_kernel 
+all: clean build
 
-syncthreads_kernel: 
+build:
 	mkdir -p build
 	$(NVCC) $(NVCCFLAGS) src/syncthreads_kernel.cu -o build/syncthreads_kernel
 

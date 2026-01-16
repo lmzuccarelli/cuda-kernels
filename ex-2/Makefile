@@ -5,9 +5,9 @@ INCLUDES = -I./include
 ARCH = -arch=sm_86
 FLAGS = -Xcompiler "-Wall -O2"
 
-all: $(PROJECT)
+all: clean build
 
-$(PROJECT): $(SRCS)
+build:
 	mkdir -p build
 	$(NVCC) $(ARCH) $(FLAGS) $(INCLUDES) -o $(PROJECT) $(SRCS)
 
