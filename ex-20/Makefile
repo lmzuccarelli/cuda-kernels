@@ -1,3 +1,5 @@
+.PHONY: all clean build
+
 CC=gcc
 NVCC=nvcc
 CFLAGS=-O2
@@ -11,4 +13,4 @@ build:
 	$(NVCC) $(NVCCFLAGS) src/2d_convolition_gpu.cu -o build/2d_convolition_gpu
 
 clean:
-	rm -f build/*
+	rm -f build

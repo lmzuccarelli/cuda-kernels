@@ -7,6 +7,8 @@ mkdir include
 mkdir build
 
 cat <<EOF > Makefile
+.PHONY: all clean build
+
 CC=gcc
 NVCC=nvcc
 CFLAGS=-O2
@@ -19,7 +21,7 @@ build:
 	\$(NVCC) \$(NVCCFLAGS) src/$2.cu -o build/$2
 
 clean:
-	rm -f build/*
+	rm -f build
 EOF
 
 touch src/$2.cu

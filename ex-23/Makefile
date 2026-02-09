@@ -1,3 +1,5 @@
+.PHONY: all clean build
+
 CC=gcc
 NVCC=nvcc
 CFLAGS=-O2
@@ -10,4 +12,4 @@ build:
 	$(NVCC) $(NVCCFLAGS) src/async-memory.cu -o build/async-memory
 
 clean:
-	rm -f build/*
+	rm -f build

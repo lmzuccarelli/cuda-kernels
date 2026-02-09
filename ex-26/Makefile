@@ -5,11 +5,11 @@ NVCC=nvcc
 CFLAGS=-O2
 NVCCFLAGS=-O2 -arch=sm_86
 
-all: clean build
+all: clean build 
 
 build:
-	mkdir -p build
-	$(NVCC) $(NVCCFLAGS) src/shm_bank_kernel.cu -o build/shm_bank_kernel
+	mkdir -p build 
+	$(NVCC) $(NVCCFLAGS) src/constant-memory.cu -o build/constant-memory
 
 clean:
 	rm -f build

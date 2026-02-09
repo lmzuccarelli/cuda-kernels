@@ -1,3 +1,5 @@
+.PHONY: all clean build
+
 NVCC=nvcc
 CFLAGS=-O2
 NVCCFLAGS=-O2 -arch=sm_86
@@ -10,4 +12,4 @@ build:
 	$(NVCC) $(NVCCFLAGS) src/non_coalesced_kernel.cu -o build/non_coalesced_kernel
 
 clean:
-	rm -f build/*
+	rm -f build

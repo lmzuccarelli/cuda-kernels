@@ -1,3 +1,5 @@
+.PHONY: all clean build
+
 CC=gcc
 NVCC=nvcc
 CFLAGS=-O2
@@ -11,4 +13,4 @@ build:
 	$(NVCC) $(NVCCFLAGS) src/vec_mult.cu -o build/vec_mult
 
 clean:
-	rm -f build/*
+	rm -f build

@@ -1,3 +1,5 @@
+.PHONY: all clean build
+
 CC = gcc
 NVCC = nvcc
 CFLAGS = -O2
@@ -11,4 +13,4 @@ build:
 	$(NVCC) $(NVCCFLAGS) src/main_gpu.cu -o gpu
 
 clean:
-	rm -f cpu gpu
+	rm -f build

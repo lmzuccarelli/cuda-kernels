@@ -1,3 +1,5 @@
+.PHONY: all clean build
+
 CC=gcc
 NVCC=nvcc
 CFLAGS=-O2
@@ -10,4 +12,4 @@ build:
 	$(NVCC) $(NVCCFLAGS) src/error_handling.cu -o build/error_handling
 
 clean:
-	rm -f build/*
+	rm -f build

@@ -1,3 +1,5 @@
+.PHONY: all clean build
+
 CC=gcc
 NVCC=nvcc
 CFLAGS=-O2
@@ -10,4 +12,4 @@ build:
 	$(NVCC) $(NVCCFLAGS) src/streams.cu -o build/streams
 
 clean:
-	rm -f build/*
+	rm -f build
