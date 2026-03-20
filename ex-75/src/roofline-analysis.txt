@@ -1,0 +1,5 @@
+# Q5_roofline_nsight.sh
+# Suppose we have a kernel in mmul.cu. We'll run Nsight Compute to gather metrics.
+
+nv-nsight-cu-cli --metrics gld_throughput,gst_throughput,flop_count_dp,\
+flop_count_sp --kernel-name "myKernel" ./myApp
